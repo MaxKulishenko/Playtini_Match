@@ -76,15 +76,21 @@ extension ViewController {
         
         plusButton.setTitle("+", for: .normal)
         plusButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
-        plusButton.addTarget(self, action: #selector(plusButtonLongPressed(_:)), for: .touchDown)
-        plusButton.addTarget(self, action: #selector(plusButtonTouchEnded(_:)), for: .touchUpInside)
-        plusButton.addTarget(self, action: #selector(plusButtonTouchEnded(_:)), for: .touchUpOutside)
+        plusButton.addTarget(self, action: #selector(plusButtonLongPressed(_:)),
+                             for: .touchDown)
+        plusButton.addTarget(self, action: #selector(plusButtonTouchEnded(_:)),
+                             for: .touchUpInside)
+        plusButton.addTarget(self, action: #selector(plusButtonTouchEnded(_:)),
+                             for: .touchUpOutside)
         
         minusButton.setTitle("-", for: .normal)
         minusButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
-        minusButton.addTarget(self, action: #selector(minusButtonLongPressed(_:)), for: .touchDown)
-        minusButton.addTarget(self, action: #selector(minusButtonTouchEnded(_:)), for: .touchUpInside)
-        minusButton.addTarget(self, action: #selector(minusButtonTouchEnded(_:)), for: .touchUpOutside)
+        minusButton.addTarget(self, action: #selector(minusButtonLongPressed(_:)),
+                              for: .touchDown)
+        minusButton.addTarget(self, action: #selector(minusButtonTouchEnded(_:)),
+                              for: .touchUpInside)
+        minusButton.addTarget(self, action: #selector(minusButtonTouchEnded(_:)),
+                              for: .touchUpOutside)
         
         counterView.text = "0"
         counterView.textColor = .blue
@@ -197,7 +203,9 @@ extension ViewController {
         
         engGameMenuButton.titleLabel?.font = UIFont(name: "Helvetica", size: 16)
         
-        engGameMenuButton.addTarget(self, action: #selector(startNewGame(_:)), for: .touchUpInside)
+        engGameMenuButton.addTarget(self,
+                                    action: #selector(startNewGame(_:)),
+                                    for: .touchUpInside)
         view.addSubview(engGameMenuButton)
         
         engGameMenuButton.translatesAutoresizingMaskIntoConstraints = false
@@ -270,14 +278,16 @@ extension ViewController {
         
         isTopObstacleAnimating = true
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + Double.random(in: 1...5)) { [weak self, weak obstacleTopView] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + Double.random(in: 1...5)) { [weak self,
+                                                                                      weak obstacleTopView] in
             guard let self = self, !self.isEndOfGame else { return }
             
             guard let obstacleTopView = obstacleTopView else { return }
             
             self.animateObstacle(obstacleTopView,
                                  from: self.view.bounds.width,
-                                 to: -obstacleTopView.frame.size.width) { [weak self, weak obstacleTopView] in
+                                 to: -obstacleTopView.frame.size.width) { [weak self,
+                                                                           weak obstacleTopView] in
                 obstacleTopView?.removeFromSuperview()
                 self?.isTopObstacleAnimating = false
                 self?.createTopObstacleView()
@@ -292,14 +302,16 @@ extension ViewController {
         
         isBottomObstacleAnimating = true
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + Double.random(in: 1...5)) { [weak self, weak obstacleBottomView] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + Double.random(in: 1...5)) { [weak self,
+                                                                                      weak obstacleBottomView] in
             guard let self = self, !self.isEndOfGame else { return }
             
             guard let obstacleBottomView = obstacleBottomView else { return }
             
             self.animateObstacle(obstacleBottomView,
                                  from: self.view.bounds.width,
-                                 to: -obstacleBottomView.frame.size.width) { [weak self, weak obstacleBottomView] in
+                                 to: -obstacleBottomView.frame.size.width) { [weak self,
+                                                                              weak obstacleBottomView] in
                 obstacleBottomView?.removeFromSuperview()
                 self?.isBottomObstacleAnimating = false
                 self?.createBottomObstacleView()
@@ -389,4 +401,3 @@ extension ViewController {
         stopChangingCircleSize()
     }
 }
-
